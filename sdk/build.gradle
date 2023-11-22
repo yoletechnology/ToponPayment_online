@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+task generateSourcesJar(type: Jar){
+    from android.sourceSets.main.java.srcDirs
+    classifier  'sources'
+}
+android {
+    compileSdk 33
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdk 19
+        targetSdk 33
+        versionCode 100
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    afterEvaluate {
+        publishing {
+			// 当前版本依赖库版本号
+            def versionName = "1.0.0" 
+            publications {
+                // Creates a Maven publication called "release".
+                release(MavenPublication) {
+                    from components.release 
+                    // 可以跟sdk工程的包名一样
+                    groupId = 'com.toponpaydcb.sdk'
+					//可以用git上的项目名
+                    artifactId = 'ToponPayment_dcb'
+                    version = versionName
+                }
+            }
+            repositories {
+                // 下面这部分，不是很清楚加不加，但是最后加上
+                maven {
+                    // change URLs to point to your repos, e.g. http://my.org/repo
+                    def baseUrl = buildDir.getParent()
+                    def releasesRepoUrl = "$baseUrl/repos/releases"
+                    def snapshotsRepoUrl = "$baseUrl/repos/snapshots"
+                    url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:22.1.1'
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    //设置状态栏颜色和状态栏文字、图标颜色
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-codec:commons-codec:1.15'
+//    implementation "org.apache.commons.codec.digest"
+//    implementation "org.apache.commons.codec.binary"
+
+    /***webview相关***/
+    //jsb通信
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+    //下拉刷新
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+}

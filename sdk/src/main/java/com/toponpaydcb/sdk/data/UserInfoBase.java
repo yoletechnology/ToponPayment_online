@@ -1,0 +1,152 @@
+
+package com.toponpaydcb.sdk.data;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.toponpaydcb.sdk.data.init.YoleInitConfig;
+import com.toponpaydcb.sdk.tool.PhoneInfo;
+import com.toponpaydcb.sdk.callback.CallBackFunction;
+
+public class UserInfoBase {
+    protected static Context act;
+    public static PhoneInfo info =  null;
+//    protected static PayInfo payInfo =  null;
+    protected static YoleInitConfig config =  null;
+    protected static String phoneNumber = "";//bigossp sdk用到的=》手机号
+    protected static String payOrderNum = "";//bigossp sdk用到的=》支付的订单号
+    protected static String amount = "";//bigossp sdk用到的=》价格
+
+    protected static String smsNumber= "";//ru-sms sdk用到的=》目标手机号
+    protected static String smsCode= "";//ru-sms sdk用到的=》短信内容
+
+    public static InitSdkData initSdkData = new InitSdkData();;
+
+    public  String getSmsNumber()
+    {
+        if(config.isDebug() == true)
+        {
+            return YoleSdkDefaultValue.Demo_SmsNumber;
+        }
+        return smsNumber;
+    }
+    public  String getSmsCode()
+    {
+        if(config.isDebug() == true)
+        {
+            return YoleSdkDefaultValue.Demo_SmsCode;
+        }
+        return smsCode;
+    }
+    public  String getSecretkey()
+    {
+
+        return config.getSecretkey();
+    }
+    public  String getCpCode()
+    {
+        if(config.isDebug() == true)
+        {
+            return YoleSdkDefaultValue.Demo_CpCode;
+        }
+        return config.getCpCode();
+    }
+    public  String getAppkey()
+    {
+        if(config.isDebug() == true)
+        {
+            return YoleSdkDefaultValue.Demo_Appkey;
+        }
+        return config.getAppKey();
+    }
+    public  String getMcc()
+    {
+        if(config.isDebug() == true)
+        {
+            return "250";
+        }
+        return info.mccWithMnc.getMcc(0);
+    }
+    public  String getMnc()
+    {
+        if(config.isDebug() == true)
+        {
+            return "99";
+        }
+        return info.mccWithMnc.getMnc(0);
+    }
+    public  String getCountryCode()
+    {
+        return info.countryCode;
+    }
+    public  String getCurrency()
+    {
+        return info.currency;
+    }
+    public  String getSymbol()
+    {
+        return info.symbol;
+    }
+
+    public  String getPackageName()
+    {
+        return info.packageName;
+    }
+    public  String getAppName()
+    {
+        return info.appName;
+    }
+    public  Drawable getIcon()
+    {
+        return info.icon;
+    }
+    public  String getVersionName()
+    {
+        return info.VersionName;
+    }
+    public  String getPhoneModel()
+    {
+        return info.phoneModel.replace(" ","-");
+    }
+    public  String getGaid()
+    {
+        return info.gaid;
+    }
+    public  String getPhoneNumber()
+    {
+        if(config.isDebug() == true && phoneNumber.length() <= 0)
+        {
+            return YoleSdkDefaultValue.Demo_PhoneNumber;
+        }
+        return phoneNumber;
+    }
+    public  void setPhoneNumber(String phone)
+    {
+        phoneNumber = phone;
+    }
+    public  String getPayOrderNum()
+    {
+        return payOrderNum;
+    }
+    public  void setPayOrderNum(String orderNum)
+    {
+        payOrderNum = orderNum;
+    }
+    public  String getAmount()
+    {
+        return amount;
+    }
+    public  String getLanguage()
+    {
+        return info.language;
+    }
+
+    public  void setAmount(String value)
+    {
+        amount = value;
+    }
+
+
+
+
+}
