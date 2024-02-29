@@ -183,10 +183,7 @@ public class NetUtil{
         String signStr = base64str + merchantSecret;
         String md5sign = DigestUtils.md5Hex(signStr);
 
-        EncodeBaseDataV2 data = new EncodeBaseDataV2();
-        data.content = base64str;
-        data.sign = md5sign;
-        return data;
+        return new EncodeBaseDataV2(base64str,md5sign);
     }
 
     public static String decodeBase64(String  content_conte)
