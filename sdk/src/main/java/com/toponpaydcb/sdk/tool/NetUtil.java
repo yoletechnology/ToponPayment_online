@@ -5,6 +5,7 @@ import android.util.Log;
 import com.toponpaydcb.sdk.YoleSdkMgr;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -182,7 +183,9 @@ public class NetUtil{
         String base64str = new String(Base64.encodeBase64(datautf8));
         Log.e(TAG,"RestApiRequest base64str= "+base64str);
         String signStr = base64str + merchantSecret;
-        String md5sign = DigestUtils.md5Hex(signStr.getBytes());
+//        String md5sign = DigestUtils.md5Hex(signStr);
+        Log.e(TAG,"RestApiRequest signStr= "+signStr);
+        String md5sign = new String(Hex.encodeHex(DigestUtils.md5(signStr)));
         Log.e(TAG,"RestApiRequest md5sign= "+md5sign);
         return new EncodeBaseDataV2(base64str,md5sign);
     }
