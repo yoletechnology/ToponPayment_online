@@ -177,13 +177,13 @@ public class NetUtil{
      * merchantSecret  cp 的密钥
      * 请求方式是 postbody, 请求内容 {"content": "content", "sign": "sign"}
      */
-    public static EncodeBaseData RestApiRequest(String requestBody, String merchantSecret) {
+    public static EncodeBaseDataV2 RestApiRequest(String requestBody, String merchantSecret) {
         byte[] datautf8 = requestBody.getBytes(StandardCharsets.UTF_8);
         String base64str = Base64.encodeBase64String(datautf8);
         String signStr = base64str + merchantSecret;
         String md5sign = DigestUtils.md5Hex(signStr);
 
-        EncodeBaseData data = new EncodeBaseData();
+        EncodeBaseDataV2 data = new EncodeBaseDataV2();
         data.content = base64str;
         data.sign = md5sign;
         return data;

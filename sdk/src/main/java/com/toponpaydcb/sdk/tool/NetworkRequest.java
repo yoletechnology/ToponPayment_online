@@ -36,7 +36,7 @@ public class NetworkRequest {
             e.printStackTrace();
             Log.d(TAG, "onlineInit-requestBody-error:"+e.toString());
         }
-        EncodeBaseData data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
+        EncodeBaseDataV2 data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
 
 
         JSONObject formBody = new JSONObject ();
@@ -71,7 +71,7 @@ public class NetworkRequest {
             e.printStackTrace();
             Log.d(TAG, "getPaymentQuery-requestBody-error:"+e.toString());
         }
-        EncodeBaseData data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
+        EncodeBaseDataV2 data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
 
 
         JSONObject formBody = new JSONObject ();
