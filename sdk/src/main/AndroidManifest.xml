@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name=".dcb.PaymentView"
+            android:name=".view.PaymentView"
             android:exported="false">
         </activity>
         <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true" />

@@ -5,12 +5,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.toponpaydcb.sdk.callback.PaymentQueryCallBackFunction;
-import com.toponpaydcb.sdk.data.InitSdkData;
-import com.toponpaydcb.sdk.dcb.PaymentView;
+import com.toponpaydcb.sdk.view.PaymentView;
 import com.toponpaydcb.sdk.callback.CallBackFunction;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class YoleSdkMgr extends YoleSdkBase{
 
@@ -35,7 +31,7 @@ public class YoleSdkMgr extends YoleSdkBase{
         return this.isSdkInitSuccess;
     }
 
-    public void onlineInit(Activity activity ,String amount,String orderNumber,CallBackFunction callback) {
+    public void startonline(Activity activity ,String amount,String orderNumber,String orderDescription,CallBackFunction callback) {
 
         this._activity = activity;
         this.onlineInitCallBack = callback;
@@ -47,7 +43,7 @@ public class YoleSdkMgr extends YoleSdkBase{
                             user.getAppkey(),
                             amount,
                             orderNumber,
-                            "订单描述",
+                            orderDescription,
                             "https://apiweb.yolesdk.com/index.html#/game/onlinePayResult?appkey="+user.getAppkey(),
                             "RU",//user.getCountryCode(),
                             user.getCurrency(),

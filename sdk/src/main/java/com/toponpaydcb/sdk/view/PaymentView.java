@@ -1,5 +1,5 @@
 
-package com.toponpaydcb.sdk.dcb;
+package com.toponpaydcb.sdk.view;
 
 import android.app.Activity;
 import android.os.Build;
@@ -8,18 +8,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.lzyzsd.jsbridge.BridgeHandler;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
@@ -31,10 +22,6 @@ import com.toponpaydcb.sdk.YoleSdkMgr;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PaymentView extends Activity {
     public String TAG = "Yole_PaymentView";
