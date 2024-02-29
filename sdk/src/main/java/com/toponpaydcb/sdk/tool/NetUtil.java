@@ -180,6 +180,7 @@ public class NetUtil{
     public static EncodeBaseDataV2 RestApiRequest(String requestBody, String merchantSecret) {
         byte[] datautf8 = requestBody.getBytes(StandardCharsets.UTF_8);
         String base64str = new String(Base64.encodeBase64(datautf8));
+        Log.e(TAG,"RestApiRequest = "+base64str);
         String signStr = base64str + merchantSecret;
         String md5sign = DigestUtils.md5Hex(signStr);
 
