@@ -179,7 +179,7 @@ public class NetUtil{
      */
     public static EncodeBaseDataV2 RestApiRequest(String requestBody, String merchantSecret) {
         byte[] datautf8 = requestBody.getBytes(StandardCharsets.UTF_8);
-        String base64str = Base64.encodeBase64String(datautf8);
+        String base64str = new String(Base64.encodeBase64(datautf8));
         String signStr = base64str + merchantSecret;
         String md5sign = DigestUtils.md5Hex(signStr);
 
@@ -188,7 +188,7 @@ public class NetUtil{
 
     public static String decodeBase64(String  content_conte)
     {
-        byte[] base64str = Base64.decodeBase64(content_conte);
+        byte[] base64str = Base64.decodeBase64(content_conte.getBytes());
         Log.e(TAG,"decodeBase64 = "+new String(base64str));
         return new String(base64str);
     }
