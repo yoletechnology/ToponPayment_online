@@ -105,10 +105,10 @@ public class UserInfo extends UserInfoBase{
                 String content_content = contentJsonObject.getString("content");
                 String decode_content = NetUtil.decodeBase64(content_content);
                 JSONObject decode_contentJsonObject = new JSONObject(decode_content);
-                String webUrl = decode_contentJsonObject.getString("webUrl");
-                Log.e(TAG, "OnlineInit:webUrl="+webUrl);
+                String url = decode_contentJsonObject.getString("url");
+                Log.e(TAG, "OnlineInit:webUrl="+url);
 
-                YoleSdkMgr.getsInstance().startonlineActivity(webUrl);
+                YoleSdkMgr.getsInstance().startonlineActivity(url);
             }
 
         } catch (JSONException e) {

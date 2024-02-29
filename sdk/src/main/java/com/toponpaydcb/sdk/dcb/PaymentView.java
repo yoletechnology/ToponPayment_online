@@ -151,7 +151,7 @@ public class PaymentView extends Activity {
                 }
                 else
                 {
-                    YoleSdkMgr.getsInstance().onlineInitResult(false,"取消支付","");
+                    YoleSdkMgr.getsInstance().onlineInitResult(false,"{\"status\":\"unpaid\",\"billingNumber\":\"\"}","");
                     m_activity.finish();
                 }
             }

@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class NetworkRequest {
     public String TAG = "Yole_NetworkRequest";
-    public void onlineInit(String appKey,String amount,String orderNumber,String companyCode,String companyPage,String countryCode,String currency,String secretkey) {
+    public void onlineInit(String appKey,String amount,String orderNumber,String orderDescription,String companyPage,String countryCode,String currency,String secretkey) {
 
         Log.d(TAG, "onlineInit countryCode:"+countryCode);
         if(countryCode.length() <= 0 )
@@ -27,10 +27,10 @@ public class NetworkRequest {
         try {
             requestBody.put("amount",amount);
             requestBody.put("orderNumber",orderNumber);
-            requestBody.put("companyCode",companyCode);
             requestBody.put("companyPage",companyPage);
             requestBody.put("countryCode",countryCode);
             requestBody.put("currency",currency);
+            requestBody.put("orderDescription",orderDescription);
             Log.d(TAG, "onlineInit-content:"+requestBody.toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class NetworkRequest {
         }
 
 
-        String res = NetUtil.sendPost("api/online/transaction/init",formBody);
+        String res = NetUtil.sendPost("v2/api/payment/transaction/init",formBody);
         Log.d(TAG, "onlineInit"+res);
         YoleSdkMgr.getsInstance().user.decodeOnlineInit(res);
     }

@@ -47,9 +47,9 @@ public class YoleSdkMgr extends YoleSdkBase{
                             user.getAppkey(),
                             amount,
                             orderNumber,
-                            user.getCpCode(),
+                            "订单描述",
                             "https://apiweb.yolesdk.com/index.html#/game/onlinePayResult?appkey="+user.getAppkey(),
-                            user.getCountryCode(),
+                            "RU",//user.getCountryCode(),
                             user.getCurrency(),
                             user.getSecretkey()
                     );
