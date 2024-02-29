@@ -36,11 +36,12 @@ public class NetworkRequest {
             e.printStackTrace();
             Log.d(TAG, "onlineInit-requestBody-error:"+e.toString());
         }
-        EncodeBaseDataV2 data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
+
 
 
         JSONObject formBody = new JSONObject ();
         try {
+            EncodeBaseDataV2 data = NetUtil.RestApiRequest(requestBody.toString(),secretkey);
             formBody.put("appKey",appKey);
             formBody.put("sign",data.sign);
             formBody.put("content",data.content);

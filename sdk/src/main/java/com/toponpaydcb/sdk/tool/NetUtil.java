@@ -180,17 +180,18 @@ public class NetUtil{
     public static EncodeBaseDataV2 RestApiRequest(String requestBody, String merchantSecret) {
         byte[] datautf8 = requestBody.getBytes(StandardCharsets.UTF_8);
         String base64str = new String(Base64.encodeBase64(datautf8));
-        Log.e(TAG,"RestApiRequest = "+base64str);
+        Log.e(TAG,"RestApiRequest base64str= "+base64str);
         String signStr = base64str + merchantSecret;
-        String md5sign = DigestUtils.md5Hex(signStr);
-
+        String md5sign = DigestUtils.md5Hex(signStr.getBytes());
+        Log.e(TAG,"RestApiRequest md5sign= "+md5sign);
         return new EncodeBaseDataV2(base64str,md5sign);
     }
 
     public static String decodeBase64(String  content_conte)
     {
+        Log.e(TAG,"decodeBase64 = "+content_conte);
         byte[] base64str = Base64.decodeBase64(content_conte.getBytes());
-        Log.e(TAG,"decodeBase64 = "+new String(base64str));
+        Log.e(TAG,"decodeBase64 base64str= "+new String(base64str));
         return new String(base64str);
     }
 
